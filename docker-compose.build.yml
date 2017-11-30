@@ -1,8 +1,12 @@
 version: "2"
 services:
-  web:
+  prod:
     image: mario21ic/nginx:prod
     build:
       context: ./
 
-  
+  prod_v2:
+    image: mario21ic/nginx:prodv2
+    build:
+      context: ./
+      dockerfile: ./DockerfileProdv2
