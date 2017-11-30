@@ -1,20 +1,19 @@
 version: "3"
 services:
   hotel:
-    image: nginx:stable-alpine
-    environment:
-      - PARALLEL_WORK_ACTIVE=0
-    volumes:
+    image: mario21ic/nginx:prod
+    #environment:
+    #  - PARALLEL_WORK_ACTIVE=0
+    #volumes:
       #- ~/.aws/credentials:/root/.aws/credentials:rw
       #- "logs_nginx:/var/log/nginx/"
     ports:
-      - 8080:80
+      - 80:80
     # service deployment
     deploy:
       # replicated or global
       mode: replicated
       replicas: 2
-      labels: [APP=DEMO,COMPONENT=NGINX]
       # service resource management
       resources:
         # Hard limit - Docker does not allow to allocate more
@@ -28,19 +27,12 @@ services:
       # service restart policy
       restart_policy:
         condition: on-failure
-        delay: 5s
-        max_attempts: 3
-        window: 120s
       # service update configuration
       update_config:
         parallelism: 2
-        delay: 10s
-        failure_action: continue
-        monitor: 60s
-        max_failure_ratio: 0.3
       # placement constraint - 'worker' or 'manager'
       placement:
         constraints: [node.role == manager]
 
-volumes:
-  logs_nginx:
+#volumes:
+#  logs_nginx:

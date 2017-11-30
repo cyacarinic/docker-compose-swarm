@@ -7,3 +7,5 @@ services:
       - ./logs/nginx/:/var/log/nginx/
     ports:
       - 80:80
+
+  
