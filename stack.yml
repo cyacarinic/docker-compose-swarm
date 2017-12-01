@@ -1,12 +1,7 @@
 version: "3"
 services:
-  hotel:
+  web:
     image: mario21ic/nginx:prod
-    #environment:
-    #  - PARALLEL_WORK_ACTIVE=0
-    #volumes:
-      #- ~/.aws/credentials:/root/.aws/credentials:rw
-      #- "logs_nginx:/var/log/nginx/"
     ports:
       - 80:80
     # service deployment
